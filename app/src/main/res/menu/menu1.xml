@@ -5,19 +5,19 @@
     <item
         android:id="@+id/leve"
         android:orderInCategory="100"
-        android:title="Leve"
+        android:title="M Leve"
         app:showAsAction="never"
         tools:icon="@drawable/mr_button_light" />
     <item
         android:id="@+id/grave"
         android:orderInCategory="100"
-        android:title="Grave"
+        android:title="M Grave"
         app:showAsAction="never"
         tools:icon="@drawable/mr_button_light" />
     <item
         android:id="@+id/MuyGrave"
         android:orderInCategory="100"
-        android:title="Muy Grave"
+        android:title="M Muy Grave"
         app:showAsAction="never"
         tools:icon="@drawable/mr_button_light" />
     <item
@@ -29,7 +29,7 @@
     <item
         android:id="@+id/total"
         android:actionViewClass="android.widget.SearchView"
-        android:icon="?attr/actionModeCopyDrawable"
+        android:icon="?attr/actionModeSelectAllDrawable"
         android:title="Total"
         app:showAsAction="always" />
     <item

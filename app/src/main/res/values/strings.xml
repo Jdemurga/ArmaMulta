@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">ArmaMulta</string>
+    <string name="app_name">Gameflix - List Multas</string>
+    <string name="creador">Creador : github.com/Jdemurga \nOrganización : Gameflix </string>
 </resources>
