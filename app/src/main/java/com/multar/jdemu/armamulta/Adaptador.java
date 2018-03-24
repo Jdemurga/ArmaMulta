@@ -87,6 +87,7 @@ public class Adaptador extends BaseAdapter {
         spinner= (Spinner)v.findViewById(R.id.cantidad);
         ArrayAdapter itemsAdapter = new ArrayAdapter(v.getContext(), android.R.layout.simple_list_item_1, total);
         spinner.setAdapter(itemsAdapter);
+        spinner.setSelection(dir.getCantidad());
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

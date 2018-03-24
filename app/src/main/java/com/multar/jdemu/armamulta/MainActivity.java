@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements android.support.v
     public boolean onQueryTextChange(String newText) {
         String z = newText.toLowerCase();
         if (!z.equals("")) {
-            ArrayList buscado = new ArrayList();
+            ArrayList<multas> buscado = new ArrayList();
             int longitud = z.length();
             for (int i = 0; i < mls.size(); i++) {
                 multas m = mls.get(i);
@@ -133,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements android.support.v
                     String d = m.getNombre().substring(0, longitud).toLowerCase();
                     if (d.equals(z)) {
                         buscado.add(m);
+                        int pri=m.getCantidad();
                     }
                 }
             }

@@ -1,5 +1,8 @@
 package com.multar.jdemu.armamulta;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -38,6 +41,8 @@ public class Main2Activity extends AppCompatActivity {
                 txt.setText("Total: 0");
                 accion="1";
                 getIntent().putExtra("accion",accion);
+                cerrar();
+
             }
         });
     }
@@ -47,5 +52,11 @@ public class Main2Activity extends AppCompatActivity {
         accion="0";
         getIntent().putExtra("accion",accion);
         super.onBackPressed();
+    }
+    public void cerrar(){
+        Intent intentToBeNewRoot = new Intent(this, MainActivity.class);
+        ComponentName cn = intentToBeNewRoot.getComponent();
+        Intent mainIntent = IntentCompat.makeRestartActivityTask(cn);
+        startActivity(mainIntent);
     }
 }
