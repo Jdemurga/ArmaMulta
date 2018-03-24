@@ -1,0 +1,37 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:orderInCategory="100"
+        android:title="Buscar"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/leve"
+        android:orderInCategory="100"
+        android:title="Leve"
+        app:showAsAction="never"
+        tools:icon="@drawable/mr_button_light" />
+    <item
+        android:id="@+id/grave"
+        android:orderInCategory="100"
+        android:title="Grave"
+        app:showAsAction="never"
+        tools:icon="@drawable/mr_button_light" />
+    <item
+        android:id="@+id/MuyGrave"
+        android:orderInCategory="100"
+        android:title="Muy Grave"
+        app:showAsAction="never"
+        tools:icon="@drawable/mr_button_light" />
+    <item
+        android:id="@+id/todo"
+        android:orderInCategory="100"
+        android:title="Todas"
+        app:showAsAction="never"
+        tools:icon="@drawable/mr_button_light" />
+
+</menu>
