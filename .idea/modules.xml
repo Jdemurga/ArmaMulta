@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ArmaMulta.iml" filepath="$PROJECT_DIR$/ArmaMulta.iml" />
-      <module fileurl="file://D:\StudioProjects\ArmaMulta\ArmaMulta.iml" filepath="D:\StudioProjects\ArmaMulta\ArmaMulta.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\StudioProjects\ArmaMulta\app\app.iml" filepath="D:\StudioProjects\ArmaMulta\app\app.iml" />
     </modules>
   </component>
 </project>
