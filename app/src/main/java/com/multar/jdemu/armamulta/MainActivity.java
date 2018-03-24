@@ -1,5 +1,6 @@
 package com.multar.jdemu.armamulta;
 
+import android.content.Intent;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,71 +20,83 @@ public class MainActivity extends AppCompatActivity implements android.support.v
     ArrayList<multas> mls;
     private android.support.v7.widget.SearchView mSearchView;
     Adaptador adapter;
+    String accion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        accion = getIntent().getStringExtra("accion");
         setContentView(R.layout.activity_main);
         lista = (ListView) findViewById(R.id.lista);
         mls = new ArrayList<multas>();
         añadir();
         adapter = new Adaptador(this, mls);
         lista.setAdapter(adapter);
+        if (accion != null) {
+            if (accion.equals("1")) {
+                for (int i = 0; i < mls.size(); i++) {
+                    multas m = mls.get(i);
+                    m.setCantidad(0);
+                }
+                adapter = new Adaptador(this, mls);
+                lista.setAdapter(adapter);
+            }
+        }
     }
 
     public void añadir() {
-        mls.add(new multas("Exceso de velocidad", "2000$", "Multa Leve"));
-        mls.add(new multas("Conducir en dirección contraria", "2500$", "Multa Leve"));
-        mls.add(new multas("Mal estacionamiento", " 1000$", "Multa Leve"));
-        mls.add(new multas("Conducción temeraria", "3500$", "Multa Leve"));
-        mls.add(new multas("Conducción campo a través", "2500$", "Multa Leve"));
-        mls.add(new multas("Conducción de vehículos no homologados", "2000$", "Multa Leve"));
-        mls.add(new multas("Romper mobiliario público", " 3000$", "Multa Leve"));
-        mls.add(new multas("Faltas de respeto", "2000$", "Multa Leve"));
-        mls.add(new multas("Amenazas", "2500$", "Multa Leve"));
-        mls.add(new multas("Agresión", "3500$", "Multa Leve"));
-        mls.add(new multas("Conducir sin luces", "1000$", "Multa Leve"));
-        mls.add(new multas("Conducir  sin el casco reglamentario", "750$", "Multa Leve"));
-        mls.add(new multas("Conducir sin carnet o licencia necesaria", "1000$", "Multa Leve"));
-        mls.add(new multas("Alterar el orden público", "1500$", "Multa Leve"));
-        mls.add(new multas("Porte de objetos ilegales(ganzúas, bridas, etc…)", "300$(cada uno)", "Multa Leve"));
-        mls.add(new multas("Porte de drogas o sustancias ilícitas(marihuana,oro,cocaina, uranio...)", "450$(cada uno)", "Multa Leve"));
-        mls.add(new multas("Enardecer el terrorismo", "2500$", "Multa Leve"));
-        mls.add(new multas("Hurto a personas", "3500$", "Multa Leve"));
-        mls.add(new multas("Hurto de vehículo", "5500$", "Multa Leve"));
-        mls.add(new multas("Hurto de vehículo policial", "9000$", "Multa Leve"));
-        mls.add(new multas("Disturbios en vía pública en pequeña escala", "4000$", "Multa Leve"));
-        mls.add(new multas("Disturbios en vía pública en gran escala", "8000$", "Multa Leve"));
-        mls.add(new multas("Saquear cadáveres", " 1500$", "Multa Leve"));
-        mls.add(new multas("Falsa denuncia o falso testimonio", "3000$", "Multa Leve"));
-        mls.add(new multas("Violación", "3500$", "Multa Leve"));
-        mls.add(new multas("Suplantar identidad", "5000$", "Multa Leve"));
-        mls.add(new multas("Atropellar intencionadamente", "10000$ (Sin muerte: 7000$)", "Multa Grave"));
-        mls.add(new multas("Fuga de policía", "A pie/5000$\nEn vehículo/7500$", "Multa Grave"));
-        mls.add(new multas("Robo a mano armada o con intimidación", "7000$\nRetirada de arma", "Multa Grave"));
-        mls.add(new multas("Conducción de vehículos no homologados artillados", "15000$", "Multa Grave"));
-        mls.add(new multas("Robo de pequeños establecimientos", "10000$\nRetirada de arma", "Multa Grave"));
-        mls.add(new multas("Robo de grandes establecimientos", "15000$\nRetirada de arma", "Multa Grave"));
-        mls.add(new multas("Robo de vehículo(violencia o intimidación)", "6000$\nRetirada de arma", "Multa Grave"));
-        mls.add(new multas("Robo de vehículo policial", "9000$\nRetirada de arma", "Multa Grave"));
-        mls.add(new multas("Desacato a la autoridad", "3000 a 6000$", "Multa Grave"));
-        mls.add(new multas("Faltas de respeto a la autoridad", "4000$", "Multa Grave"));
-        mls.add(new multas("Obstrucción a las labores de la justicia", "5000$", "Multa Grave"));
-        mls.add(new multas("Porte ilícito de armas(PISTOLA SIN LICENCIA)", "5000$\nRetirada de arma", "Multa Grave"));
-        mls.add(new multas("Porte ilícito de armas(SUBFUSILES)", "10000$\nRetirada de arma", "Multa Grave"));
-        mls.add(new multas("Porte ilícito de armas(FUSILES+)", "15000$\nRetirada de arma", "Multa Grave"));
-        mls.add(new multas("Porte ilícito de material o armamento explosivo", "25000$\nRetirada del material", "Multa Grave"));
-        mls.add(new multas("Homicidio", "20000$\nRetirada de arma", "Multa Grave"));
-        mls.add(new multas("Intento de homicidio", "7000$\nRetirada de arma", "Multa Grave"));
-        mls.add(new multas("ntrusión o Robo en domicilios", "10000$", "Multa Grave"));
-        mls.add(new multas("Tráfico de drogas", "12000$", "Multa Grave"));
-        mls.add(new multas("Extorsión", "6000$", "Multa Grave"));
-        mls.add(new multas("Secuestro", "30000$", "Multa Muy Grave"));
-        mls.add(new multas("Homicidio a un agente de la autoridad", "45000$", "Multa Muy Grave"));
-        mls.add(new multas("Intento de homicidio a un agente de la autoridad", "20000$\nRetirada de arma", "Multa Muy Grave"));
-        mls.add(new multas("Atentado", "Ejecucion", "Multa Muy Grave"));
-        mls.add(new multas("Uso de vehículos artillados", "20000$", "Multa Muy Grave"));
-        mls.add(new multas("Suplantar identidad de policía", "10000$", "Multa Muy Grave"));
+        mls.add(new multas("Exceso de velocidad", "2000$", "Multa Leve", 0));
+        mls.add(new multas("Conducir en dirección contraria", "2500$", "Multa Leve", 0));
+        mls.add(new multas("Mal estacionamiento", " 1000$", "Multa Leve", 0));
+        mls.add(new multas("Conducción temeraria", "3500$", "Multa Leve", 0));
+        mls.add(new multas("Conducción campo a través", "2500$", "Multa Leve", 0));
+        mls.add(new multas("Conducción de vehículos no homologados", "2000$", "Multa Leve", 0));
+        mls.add(new multas("Romper mobiliario público", " 3000$", "Multa Leve", 0));
+        mls.add(new multas("Faltas de respeto", "2000$", "Multa Leve", 0));
+        mls.add(new multas("Amenazas", "2500$", "Multa Leve", 0));
+        mls.add(new multas("Agresión", "3500$", "Multa Leve", 0));
+        mls.add(new multas("Conducir sin luces", "1000$", "Multa Leve", 0));
+        mls.add(new multas("Conducir  sin el casco reglamentario", "750$", "Multa Leve", 0));
+        mls.add(new multas("Conducir sin carnet o licencia necesaria", "1000$", "Multa Leve", 0));
+        mls.add(new multas("Alterar el orden público", "1500$", "Multa Leve", 0));
+        mls.add(new multas("Porte de objetos ilegales(ganzúas, bridas, etc…)", "300$(cada uno)", "Multa Leve", 0));
+        mls.add(new multas("Porte de drogas o sustancias ilícitas(marihuana,oro,cocaina, uranio...)", "450$(cada uno)", "Multa Leve", 0));
+        mls.add(new multas("Enardecer el terrorismo", "2500$", "Multa Leve", 0));
+        mls.add(new multas("Hurto a personas", "3500$", "Multa Leve", 0));
+        mls.add(new multas("Hurto de vehículo", "5500$", "Multa Leve", 0));
+        mls.add(new multas("Hurto de vehículo policial", "9000$", "Multa Leve", 0));
+        mls.add(new multas("Disturbios en vía pública en pequeña escala", "4000$", "Multa Leve", 0));
+        mls.add(new multas("Disturbios en vía pública en gran escala", "8000$", "Multa Leve", 0));
+        mls.add(new multas("Saquear cadáveres", " 1500$", "Multa Leve", 0));
+        mls.add(new multas("Falsa denuncia o falso testimonio", "3000$", "Multa Leve", 0));
+        mls.add(new multas("Violación", "3500$", "Multa Leve", 0));
+        mls.add(new multas("Suplantar identidad", "5000$", "Multa Leve", 0));
+        mls.add(new multas("Atropellar intencionadamente", "10000$ (Sin muerte: 7000$)", "Multa Grave", 0));
+        mls.add(new multas("Fuga de policía", "A pie/5000$\nEn vehículo/7500$", "Multa Grave", 0));
+        mls.add(new multas("Robo a mano armada o con intimidación", "7000$\nRetirada de arma", "Multa Grave", 0));
+        mls.add(new multas("Conducción de vehículos no homologados artillados", "15000$", "Multa Grave", 0));
+        mls.add(new multas("Robo de pequeños establecimientos", "10000$\nRetirada de arma", "Multa Grave", 0));
+        mls.add(new multas("Robo de grandes establecimientos", "15000$\nRetirada de arma", "Multa Grave", 0));
+        mls.add(new multas("Robo de vehículo(violencia o intimidación)", "6000$\nRetirada de arma", "Multa Grave", 0));
+        mls.add(new multas("Robo de vehículo policial", "9000$\nRetirada de arma", "Multa Grave", 0));
+        mls.add(new multas("Desacato a la autoridad", "3000 a 6000$", "Multa Grave", 0));
+        mls.add(new multas("Faltas de respeto a la autoridad", "4000$", "Multa Grave", 0));
+        mls.add(new multas("Obstrucción a las labores de la justicia", "5000$", "Multa Grave", 0));
+        mls.add(new multas("Porte ilícito de armas(PISTOLA SIN LICENCIA)", "5000$\nRetirada de arma", "Multa Grave", 0));
+        mls.add(new multas("Porte ilícito de armas(SUBFUSILES)", "10000$\nRetirada de arma", "Multa Grave", 0));
+        mls.add(new multas("Porte ilícito de armas(FUSILES+)", "15000$\nRetirada de arma", "Multa Grave", 0));
+        mls.add(new multas("Porte ilícito de material o armamento explosivo", "25000$\nRetirada del material", "Multa Grave", 0));
+        mls.add(new multas("Homicidio", "20000$\nRetirada de arma", "Multa Grave", 0));
+        mls.add(new multas("Intento de homicidio", "7000$\nRetirada de arma", "Multa Grave", 0));
+        mls.add(new multas("ntrusión o Robo en domicilios", "10000$", "Multa Grave", 0));
+        mls.add(new multas("Tráfico de drogas", "12000$", "Multa Grave", 0));
+        mls.add(new multas("Extorsión", "6000$", "Multa Grave", 0));
+        mls.add(new multas("Secuestro", "30000$", "Multa Muy Grave", 0));
+        mls.add(new multas("Homicidio a un agente de la autoridad", "45000$", "Multa Muy Grave", 0));
+        mls.add(new multas("Intento de homicidio a un agente de la autoridad", "20000$\nRetirada de arma", "Multa Muy Grave", 0));
+        mls.add(new multas("Atentado", "Ejecucion", "Multa Muy Grave", 0));
+        mls.add(new multas("Uso de vehículos artillados", "20000$", "Multa Muy Grave", 0));
+        mls.add(new multas("Suplantar identidad de policía", "10000$", "Multa Muy Grave", 0));
 
     }
 
@@ -94,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements android.support.v
         getMenuInflater().inflate(R.menu.menu1, menu);
 
 
-        android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView)menu.findItem(R.id.search).getActionView();
+        android.support.v7.widget.SearchView searchView = (android.support.v7.widget.SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setOnQueryTextListener(this);
 
         return true;
@@ -109,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements android.support.v
     @Override
     public boolean onQueryTextChange(String newText) {
         String z = newText.toLowerCase();
-        if(!z.equals("")){
+        if (!z.equals("")) {
             ArrayList buscado = new ArrayList();
             int longitud = z.length();
             for (int i = 0; i < mls.size(); i++) {
@@ -124,11 +137,13 @@ public class MainActivity extends AppCompatActivity implements android.support.v
             }
             adapter = new Adaptador(MainActivity.this, buscado);
             lista.setAdapter(adapter);
-        }else{
+        } else {
             adapter = new Adaptador(MainActivity.this, mls);
             lista.setAdapter(adapter);
-        }        return false;
+        }
+        return false;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -136,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements android.support.v
             ArrayList buscado = new ArrayList();
             for (int i = 0; i < mls.size(); i++) {
                 multas m = mls.get(i);
-                if(m.getCategoria().equals("Multa Leve")){
+                if (m.getCategoria().equals("Multa Leve")) {
                     buscado.add(m);
                 }
             }
@@ -148,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements android.support.v
             ArrayList buscado = new ArrayList();
             for (int i = 0; i < mls.size(); i++) {
                 multas m = mls.get(i);
-                if(m.getCategoria().equals("Multa Grave")){
+                if (m.getCategoria().equals("Multa Grave")) {
                     buscado.add(m);
                 }
             }
@@ -160,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements android.support.v
             ArrayList buscado = new ArrayList();
             for (int i = 0; i < mls.size(); i++) {
                 multas m = mls.get(i);
-                if(m.getCategoria().equals("Multa Muy Grave")){
+                if (m.getCategoria().equals("Multa Muy Grave")) {
                     buscado.add(m);
                 }
             }
@@ -173,7 +188,39 @@ public class MainActivity extends AppCompatActivity implements android.support.v
             lista.setAdapter(adapter);
             return true;
         }
+        if (id == R.id.total) {
+            contar();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
+
+    public void contar() {
+        int total = 0;
+
+        ArrayList posibles = new ArrayList();
+        for (int i = 0; i < mls.size(); i++) {
+            multas m = mls.get(i);
+            String nombre = m.getNombre();
+            String precio = m.getPago();
+            int cantidad = m.getCantidad();
+            if (cantidad > 0) {
+                String pe = precio.substring(0, precio.length() - 1);
+                int asciende = cantidad * Integer.parseInt(pe);
+                posibles.add(nombre + "\n \n" + precio + " * " + cantidad + " = " + asciende);
+                total += asciende;
+            }
+        }
+        String fin = "" + total;
+        iniciar(posibles, fin);
+    }
+
+    public void iniciar(ArrayList listado, String total) {
+        Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+        intent.putStringArrayListExtra("datos", listado);
+        intent.putExtra("total", total);
+        startActivity(intent);
+    }
+
 
 }

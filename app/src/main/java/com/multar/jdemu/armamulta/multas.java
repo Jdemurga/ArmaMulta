@@ -8,11 +8,12 @@ public class multas {
     String nombre;
     String pago;
     String categoria;
-
-    public multas(String nombre, String pago, String categoria) {
+    int cantidad;
+    public multas(String nombre, String pago, String categoria,int cantidad){
         this.nombre = nombre;
         this.pago = pago;
         this.categoria = categoria;
+        this.cantidad=cantidad;
     }
 
     public String getCategoria() {
@@ -25,5 +26,13 @@ public class multas {
 
     public String getPago() {
         return pago;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 }

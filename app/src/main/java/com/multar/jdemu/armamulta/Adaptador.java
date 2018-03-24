@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 public class Adaptador extends BaseAdapter {
     protected Activity activity;
     protected ArrayList<multas> items;
-
+    Spinner spinner;
     public Adaptador(Activity activity, ArrayList<multas> items) {
         this.activity = activity;
         this.items = items;
@@ -60,8 +61,7 @@ public class Adaptador extends BaseAdapter {
             v = inf.inflate(R.layout.items, null);
         }
 
-        multas dir = items.get(position);
-        ImageView papelera = (ImageView) v.findViewById(R.id.borrar);
+        final multas dir = items.get(position);
         TextView nombre = (TextView) v.findViewById(R.id.nombre);
         nombre.setText(dir.getNombre());
         TextView msm = (TextView) v.findViewById(R.id.precio);
@@ -84,17 +84,25 @@ public class Adaptador extends BaseAdapter {
         for (int i = 0; i < 100; i++) {
             total.add(i);
         }
-        final Spinner spinner= (Spinner)v.findViewById(R.id.cantidad);
+        spinner= (Spinner)v.findViewById(R.id.cantidad);
         ArrayAdapter itemsAdapter = new ArrayAdapter(v.getContext(), android.R.layout.simple_list_item_1, total);
         spinner.setAdapter(itemsAdapter);
-        papelera.setOnClickListener(new View.OnClickListener() {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                spinner.setSelection(0);
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int cantidad= (int)spinner.getItemAtPosition(position);
+                dir.setCantidad(cantidad);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
+
         return v;
     }
+
 
     @Nullable
     @Override

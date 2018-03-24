@@ -49,11 +49,4 @@
             android:layout_height="60dp" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/borrar"
-        android:layout_width="wrap_content"
-        android:layout_height="58dp"
-        android:layout_weight="1"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
-
 </LinearLayout>
